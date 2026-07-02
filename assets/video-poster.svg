@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe4ea"/><stop offset="1" stop-color="#fff6d8"/></linearGradient></defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <circle cx="640" cy="360" r="92" fill="#e9576b" opacity=".95"/>
+  <polygon points="615,310 615,410 705,360" fill="white"/>
+  <text x="640" y="515" text-anchor="middle" font-family="Arial" font-size="48" font-weight="700" fill="#251c1b">Vidéo mode d'utilisation NutriCute</text>
+  <text x="640" y="575" text-anchor="middle" font-family="Arial" font-size="28" fill="#6f5f5b">Sachet + 60 ml d'eau + 60 secondes</text>
+</svg>
