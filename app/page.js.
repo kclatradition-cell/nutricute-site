@@ -1,0 +1,122 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { ArrowRight, Clock3, CupSoda, Leaf, ShoppingBag, Sparkles, TimerReset } from 'lucide-react';
+
+const shopUrl = process.env.NEXT_PUBLIC_SHOP_URL || '#';
+const odooUrl = process.env.NEXT_PUBLIC_ODOO_URL || '#';
+
+const flavours = [
+  { name: 'Red Fudge', note: 'Cacao rouge, betterave, texture fondante', color: 'rose' },
+  { name: 'Lemon Poppy', note: 'Citron vif, pavot, finale fraîche', color: 'yellow' },
+  { name: 'Green Velvet', note: 'Matcha doux, pandan, nuance végétale', color: 'green' },
+  { name: 'Purple Velvet', note: 'Ube, taro, couleur naturellement douce', color: 'purple' },
+  { name: 'Tropical Velvet', note: 'Mangue, passion, notes exotiques', color: 'orange' },
+];
+
+const steps = [
+  { icon: CupSoda, title: 'Verser', text: 'Verse le sachet NutriCute dans un mug compatible micro-ondes.' },
+  { icon: TimerReset, title: 'Ajouter 60 ml', text: 'Ajoute 60 ml d’eau, puis mélange jusqu’à obtenir une pâte lisse.' },
+  { icon: Clock3, title: 'Chauffer 60 s', text: 'Passe au micro-ondes environ 60 secondes, puis laisse reposer 5 minutes.' },
+];
+
+export default function Home() {
+  return (
+    <main>
+      <nav className="nav">
+        <div className="brand"><span className="logoMark">N</span> NutriCute</div>
+        <div className="navLinks">
+          <a href="#produits">Goûts</a>
+          <a href="#utilisation">Mode d’utilisation</a>
+          <a href="#integration">Shopify / Odoo</a>
+        </div>
+        <a className="navBtn" href={shopUrl}>Commander</a>
+      </nav>
+
+      <section className="hero">
+        <motion.div className="heroText" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <p className="eyebrow"><Sparkles size={16}/> Mug cake naturel prêt en 60 secondes</p>
+          <h1>Le petit gâteau chaud, cute, rapide et vraiment gourmand.</h1>
+          <p className="lead">NutriCute transforme un simple mug en dessert moelleux : 60 g de préparation, 60 ml d’eau, 60 secondes au micro-ondes.</p>
+          <div className="heroActions">
+            <a className="primary" href={shopUrl}>Acheter bientôt <ArrowRight size={18}/></a>
+            <a className="secondary" href="#utilisation">Voir la préparation</a>
+          </div>
+          <div className="trustRow">
+            <span><Leaf size={16}/> Ingrédients d’origine naturelle</span>
+            <span><ShoppingBag size={16}/> Compatible Shopify & Odoo</span>
+          </div>
+        </motion.div>
+
+        <motion.div className="heroCard" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}>
+          <div className="packet packetRed">RED<br/>FUDGE</div>
+          <div className="packet packetGreen">GREEN<br/>VELVET</div>
+          <div className="mugSteam"><span></span><span></span><span></span></div>
+          <div className="mug">60 ml</div>
+        </motion.div>
+      </section>
+
+      <section id="produits" className="section">
+        <div className="sectionHeader">
+          <p className="eyebrow">Collection</p>
+          <h2>Des goûts clairs, visuels et faciles à comprendre.</h2>
+          <p>La page est conçue pour rester légère : quelques goûts forts en accueil, pas une vitrine surchargée.</p>
+        </div>
+        <div className="flavourGrid">
+          {flavours.map((item) => (
+            <article className={`flavour ${item.color}`} key={item.name}>
+              <div className="flavourTop"></div>
+              <h3>{item.name}</h3>
+              <p>{item.note}</p>
+              <a href={shopUrl}>Voir le produit</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="utilisation" className="videoSection">
+        <div className="videoCopy">
+          <p className="eyebrow">Vidéo courte cinématographique</p>
+          <h2>Un geste simple, filmé proprement.</h2>
+          <p>La vidéo prévue montre uniquement les mains : un mug, le sachet, 60 ml d’eau, le mélange, le micro-ondes, puis le gâteau chaud prêt à manger.</p>
+          <div className="steps">
+            {steps.map(({ icon: Icon, title, text }) => (
+              <div className="step" key={title}>
+                <Icon size={22}/>
+                <div><strong>{title}</strong><p>{text}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="cinemaFrame">
+          <video className="video" autoPlay muted loop playsInline poster="/video-poster.svg">
+            <source src="/nutricute-mode-utilisation.mp4" type="video/mp4" />
+          </video>
+          <div className="videoFallback">
+            <span>Plan vidéo</span>
+            <strong>60 g + 60 ml + 60 s</strong>
+            <p>Remplacer ce bloc par la vraie vidéo MP4 dans /public.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="integration" className="section integration">
+        <div>
+          <p className="eyebrow">Architecture</p>
+          <h2>Compatible avec Shopify, Odoo, GitHub et Vercel.</h2>
+          <p>Ce site peut servir de vitrine principale. Les boutons peuvent rediriger vers Shopify, Odoo eCommerce, une fiche produit, un formulaire B2B ou une page de précommande.</p>
+        </div>
+        <div className="integrationCards">
+          <div><strong>Shopify</strong><p>Utiliser NEXT_PUBLIC_SHOP_URL pour diriger les boutons vers la boutique.</p></div>
+          <div><strong>Odoo</strong><p>Utiliser NEXT_PUBLIC_ODOO_URL pour les liens B2B, devis ou catalogue.</p></div>
+          <div><strong>Vercel</strong><p>Déploiement automatique à chaque mise à jour GitHub.</p></div>
+        </div>
+      </section>
+
+      <footer>
+        <strong>NutriCute</strong>
+        <span>Une marque KC la Tradition inc.</span>
+      </footer>
+    </main>
+  );
+}
